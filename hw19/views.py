@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from datetime import datetime
 
 
 def index1(request):
@@ -13,3 +14,12 @@ def index1(request):
         if len(line) > len(longest_line):
             longest_line = line
     return HttpResponse(f"The longest field: {longest_line}")
+
+
+def index2(request):
+    date0 = request.POST.get("date")
+    date = date0.split(".")
+    if (date[1] and date[2]) == "01":
+        return HttpResponse(f"С новым {date[0]} годом")
+    else:
+        return HttpResponse(date0)
